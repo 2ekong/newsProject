@@ -16,7 +16,7 @@ public class JoinController {
         this.joinService = joinService;
     }
     @PostMapping("/join")
-    public String joinPorcess(JoinDTO joinDTO){    //회원가입
+    public String joinProcess(JoinDTO joinDTO){    //회원가입
         joinService.joinProcess(joinDTO);
         return "success";
     }

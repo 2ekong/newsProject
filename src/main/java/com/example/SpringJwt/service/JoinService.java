@@ -22,12 +22,16 @@ public class JoinService {
         String password = joinDTO.getPassword();
         String nickname = joinDTO.getNickname();
         
-        Boolean isExist = userRepository.existsByEmail(email);  //존재하는지 true, false로 받고
-
-        if(isExist) {
-
-            return;
+        Boolean isExistEmail = userRepository.existsByEmail(email);  //존재하는지 true, false로 받고
+        if (isExistEmail) {
+            throw new IllegalStateException("이미 사용 중인 이메일입니다.");
         }
+
+        Boolean isExistNickname = userRepository.existsByNickname(nickname);
+        if (isExistNickname) {
+            throw new IllegalStateException("이미 사용 중인 닉네임입니다.");
+        }
+
 
         UserEntity data = new UserEntity();
 
